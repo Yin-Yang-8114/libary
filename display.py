@@ -1,4 +1,4 @@
-def print_menu():
+def display_menu():
         print("===============================")
         print("       LIBRARY MANAGEMENT")
         print("================================")
@@ -10,3 +10,11 @@ def print_menu():
         print("6. Display available books")
         print("7. Display books by author")
         print("8. Exit")
+
+def display_books(books):
+    if not books:
+        print("No books found.")
+        return
+    for book in books:
+        availability = "Available" if book["available"] else "Not Available"
+        print(f"ID: {book['id']}, Name: {book['name']}, Author: {book['author']}, Year: {book['year']}, Availability: {availability}")
