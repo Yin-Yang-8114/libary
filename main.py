@@ -19,7 +19,8 @@ def main():
             book_id = validate_input("Enter the book ID to borrow: ", "positive_num")
             borrow_book(books, book_id)
         elif choice == 5:
-            pass
+            book_id = validate_input("Enter the book ID to return: ", "positive_num")
+            return_book(books, book_id)
         elif choice == 6:
             pass
         elif choice == 7:

@@ -42,3 +42,14 @@ def borrow_book(books, book_id):
                 print(f"Sorry, '{book['name']}' is currently not available.")
             return
     print("Book not found.")
+
+def return_book(books, book_id):
+    for book in books:
+        if book["id"] == book_id:
+            if not book["available"]:
+                book["available"] = True
+                print(f"You have returned '{book['name']}'.")
+            else:
+                print(f"'{book['name']}' was not borrowed.")
+            return
+    print("Book not found.")
