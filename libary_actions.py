@@ -4,10 +4,7 @@ from valdiations import validate_input
 def serche_book(books,name): # find()
     books_found = []
     for book in books:
-        if book["name"].lower() == name.lower():
-            print(f"Book found: ID: {book['id']}, Name: {book['name']}, Author: {book['author']}, Year: {book['year']}, Availability: {'Available' if book['available'] else 'Not Available'}")
-            return
-        elif name.lower() in book["name"].lower():
+        if name.lower() in book["name"].lower():
             books_found.append(book)
     if books_found:
         print("Books found:")
@@ -20,7 +17,7 @@ def serche_book(books,name): # find()
 
 def add_book(books,name,author,year):
     new_book = {
-        "id": len(books) + 1,
+        "id": get_next_book_id(books),
         "name": name,
         "author": author,
         "year": year,
@@ -53,3 +50,28 @@ def return_book(books, book_id):
                 print(f"'{book['name']}' was not borrowed.")
             return
     print("Book not found.")
+
+
+def get_available_books(books):
+    available_books = [book for book in books if book["available"]]
+    if not available_books:
+        print("No available books found.")
+        return
+    print("Available books:")
+    for book in available_books:
+        print(f"ID: {book['id']}, Name: {book['name']}, Author: {book['author']}, Year: {book['year']}")
+
+def get_books_by_author(books, author):
+    books_found = []
+    for book in books:
+        if author.lower() == book["author"].lower():
+            books_found.append(book)
+    if books_found:
+        print("Books found:")
+        for book in books_found:
+            print(f"ID: {book['id']}, Name: {book['name']}, Author: {book['author']}, Year: {book['year']}, Availability: {'Available' if book['available'] else 'Not Available'}")
+    else:
+        print("No books found with that author.")
+
+def get_next_book_id(books):
+    return len(books) +1

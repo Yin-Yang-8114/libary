@@ -1,7 +1,7 @@
 from valdiations import user_choice,validate_input
 from display import display_books
 from data import books
-from libary_actions import serche_book,add_book,borrow_book
+from libary_actions import *
 def main():
     choice =user_choice()
     while choice != 8:
@@ -22,9 +22,10 @@ def main():
             book_id = validate_input("Enter the book ID to return: ", "positive_num")
             return_book(books, book_id)
         elif choice == 6:
-            pass
+            get_available_books(books)
         elif choice == 7:
-            pass
+            author = validate_input("Enter the author name to search: ", "not_empty")
+            get_books_by_author(books, author)
         choice = user_choice()
     print("goodbye")
 
